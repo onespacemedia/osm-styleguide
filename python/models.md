@@ -36,3 +36,31 @@ title = models.CharField(
     help_text='This is helpful text, and because it is all on one line you can grep for any part of this string.',
 )
 ```
+
+# About various field types
+
+Don't use a very large `max_length` for `CharField`. Generally, unless there are good technical reasons to do otherwise, don't supply a `max_length` of more than 300. If you need more characters than that, use a `TextField`.
+
+A `ForeignKey`, `ManyToManyField`, etc, should usually use the string form for specifying the model:
+
+```python
+page = models.ForeignKey(
+    'pages.Page',
+)
+
+articles = models.ManyToManyField(
+    'news.Article',
+)
+```
+
+This avoids problems with recursive imports across apps.
+
+# Model ordering
+
+Order model attributes thusly:
+
+* Static class variables (e.g., the common `urlconf = 'projectname.apps.news.urls'`)
+* Database fields
+* The `Meta` class
+* Double-underscore-prefixed special methods, e.g. `__unicode__`/`__str__`
+* All other model methods, in alphabetical order
