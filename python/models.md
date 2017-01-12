@@ -2,7 +2,7 @@
 
 General form:
 
-```
+```python
 class StyleGuide(models.Model):
 
     title = models.CharField(
@@ -18,7 +18,7 @@ There should be a dangling comma after the last argument. Again, this makes diff
 
 String literals that are displayed to users, such as the `help_text` for a model field, should not be broken across lines, regardless of their length. Don't do something like this:
 
-```
+```python
 title = models.CharField(
     max_length=100,
     help_text=(
@@ -28,4 +28,11 @@ title = models.CharField(
 )
 ```
 
-This makes it harder to search for distinctive strings; a `grep` for "more than one line" will not return the file in which the above field lives.
+This makes it harder to search for distinctive strings; a `grep` for "more than one line" will not return the file in which the above field lives. Do this instead:
+
+```python
+title = models.CharField(
+    max_length=100,
+    help_text='This is helpful text, and because it is all on one line you can grep for any part of this string.',
+)
+```
