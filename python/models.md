@@ -63,4 +63,5 @@ Order model attributes thusly:
 * Database fields
 * The `Meta` class
 * Double-underscore-prefixed special methods, e.g. `__unicode__`/`__str__`
+* Overrides of standard model methods (e.g. `save()`).
 * All other model methods, in alphabetical order
